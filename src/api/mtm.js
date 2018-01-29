@@ -28,6 +28,7 @@ export default class MusicAPI {
    */
   static getChart = (date) => {
 
+<<<<<<< HEAD
     let BILLBOARD_URL = "http://localhost:9006/billboard/charts/" + date + "?filter=song";
     
     return axios.get(BILLBOARD_URL)
@@ -75,6 +76,18 @@ export default class MusicAPI {
 
         result.forEach((chartItem) => {
           chart.push(new ChartPosition(chartItem['?position'], chartItem['?id'], chartItem['?name'], chartItem['?name1']));
+=======
+    let requestUrl = BASE_URL + "/charts/" + date;
+
+    return axios.get(requestUrl)
+      .then(function (res) {
+
+        let result = res.data.data;
+        let chart = [];
+
+        result.forEach((chartItem) => {
+          chart.push(new ChartPosition(chartItem.rank, chartItem.songId, chartItem['song.name'], chartItem['song.artist']));
+>>>>>>> cfd57b4c2e7f228af2463635306b0e85a468ccf6
         });
 
         return chart;
@@ -88,6 +101,7 @@ export default class MusicAPI {
    * Get song information given an id
    */
   static getSongInfo = (id) => {
+<<<<<<< HEAD
 
     let requestUrl = BASE_URL + "/songs/" + id;
 
@@ -108,6 +122,10 @@ export default class MusicAPI {
 
 
    
+=======
+    // TODO: Implement!
+    return null;
+>>>>>>> cfd57b4c2e7f228af2463635306b0e85a468ccf6
   }
 
   /**
@@ -136,6 +154,7 @@ export default class MusicAPI {
    * Get related media of a song given an id.
    */
   static getSongMedia = (id) => {
+<<<<<<< HEAD
     let requestUrl = BASE_URL + "/songs/" + id + "/media?n=4";
 
     return axios.get(requestUrl)
@@ -154,4 +173,9 @@ export default class MusicAPI {
         MusicAPI.handleError(error);
       });
     }
+=======
+    // TODO: Implement!
+    return null;
+  }
+>>>>>>> cfd57b4c2e7f228af2463635306b0e85a468ccf6
 }
